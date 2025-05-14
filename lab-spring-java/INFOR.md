@@ -255,3 +255,63 @@ public class ClienteFacade {
 | **Singleton**      | Quando precisa de uma única instância (ex: log, config)        |
 | **Strategy**       | Quando há comportamentos alternáveis em tempo de execução      |
 | **Facade**         | Quando quiser simplificar a interação com sistemas complexos   |
+
+com
+└── exemplo
+    └── meuapp
+        ├── controller    # Pacote para controladores REST
+        ├── service       # Pacote para serviços de lógica de negócios
+        ├── repository    # Pacote para repositórios JPA
+        ├── model         # Pacote para entidades (modelos)
+        ├── dto           # Pacote para Data Transfer Objects (DTOs)
+        ├── exception     # Pacote para exceções personalizadas
+        ├── config        # Pacote para configurações
+        └── MeuappApplication.java  # Classe principal com @SpringBootApplication
+
+## Explicação dos Pacotes:
+
+### controller:
+
+Contém as classes responsáveis pela camada de controle (REST API). As classes do controlador lidam com requisições HTTP e delegam o processamento para os serviços.
+
+Exemplo: UsuarioController.java
+
+### service:
+
+Contém a lógica de negócios. A camada de serviço deve ser responsável por orquestrar as operações do sistema e interagir com os repositórios para persistir ou recuperar dados.
+
+Exemplo: UsuarioService.java
+
+### repository:
+
+Contém as interfaces que extendem JpaRepository ou CrudRepository. Elas são responsáveis pelas operações de persistência de dados.
+
+Exemplo: UsuarioRepository.java
+
+### model (ou entity):
+
+Contém as classes de entidades JPA que são mapeadas para as tabelas no banco de dados.
+
+Exemplo: Usuario.java
+
+### dto (Data Transfer Objects):
+
+Contém classes simples que são usadas para transferir dados entre camadas, especialmente entre o controlador e o cliente. Elas podem ser úteis para evitar expor diretamente as entidades JPA nas APIs.
+
+Exemplo: UsuarioDTO.java
+
+### exception:
+
+Contém classes para exceções personalizadas e manipuladores globais de exceção (como um @ControllerAdvice para tratamento de erros).
+
+Exemplo: ResourceNotFoundException.java ou GlobalExceptionHandler.java
+
+### config:
+
+Contém classes de configuração para o Spring Boot, como configurações de segurança, configurações de banco de dados ou configurações do próprio Spring.
+
+Exemplo: WebSecurityConfig.java
+
+### MeuappApplication.java:
+
+A classe principal que contém o método main e é anotada com @SpringBootApplication. É o ponto de entrada da aplicação.
